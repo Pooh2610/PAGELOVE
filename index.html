@@ -105,7 +105,6 @@
         radial-gradient(ellipse 40% 40% at 20% 80%, rgba(184,134,11,.15) 0%, transparent 60%);
     }
 
-    /* soft glow ring around hero text */
     header::after {
       content: '';
       position: absolute;
@@ -388,6 +387,44 @@
     }
     footer span { color: var(--gold-light); }
 
+    /* ── Firma ── */
+    .firma-bloque {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 3rem 2rem 5rem;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+    .firma-linea {
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold-mid), transparent);
+      margin-bottom: 2.5rem;
+    }
+    .firma-nombres {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-style: italic;
+      font-size: clamp(2rem, 6vw, 3.5rem);
+      color: var(--gold-light);
+      text-shadow: 0 0 40px rgba(212,160,23,.5);
+      letter-spacing: .06em;
+    }
+    .firma-nombres span {
+      color: var(--gold-mid);
+      font-size: .7em;
+      vertical-align: middle;
+      margin: 0 .5rem;
+    }
+    .firma-sub {
+      margin-top: .8rem;
+      font-family: 'Cinzel', serif;
+      font-size: .7rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: rgba(212,160,23,.5);
+    }
+
     /* ── Reveal on scroll ── */
     .reveal {
       opacity: 0;
@@ -459,7 +496,7 @@
         No sabes cuánto valoro cada momento que compartimos, incluso los más simples.
         Y si algo tengo claro hoy, es que volvería a elegirte una y otra vez… porque tenerte a mi lado es de las cosas más bonitas que me han pasado.
       </p>
-      <p class="signature">Con todo mi amor, siempre tuyo ♥</p>
+      <p class="signature">— De Esaú, para Adriana ♥</p>
     </div>
   </section>
 
@@ -506,6 +543,13 @@
       <span class="icon">♥</span> Tócame para saberlo <span class="icon">♥</span>
     </button>
     <p id="heartMsg" style="margin-top:1.5rem; font-size:1.2rem; font-style:italic; color:var(--gold-light); min-height:2rem;"></p>
+  </div>
+
+  <!-- ── FIRMA ── -->
+  <div class="firma-bloque reveal">
+    <div class="firma-linea"></div>
+    <div class="firma-nombres">Esaú <span>♥</span> Adriana</div>
+    <p class="firma-sub">De Esaú, para Adriana&nbsp;·&nbsp;</p>
   </div>
 
 </main>
@@ -559,9 +603,10 @@
     }
   });
 </script>
+
 <!-- ── YouTube player oculto ── -->
 <div id="yt-player" style="position:fixed;bottom:-9999px;left:-9999px;width:1px;height:1px;pointer-events:none;z-index:-1;"></div>
- 
+
 <!-- ── Botón flotante de música ── -->
 <button id="musicBtn" title="Música" style="
   position: fixed;
@@ -578,7 +623,7 @@
   transition: box-shadow .3s, border-color .3s;
   font-size: 1.3rem;
 ">🎵</button>
- 
+
 <style>
   #musicBtn:hover { box-shadow: 0 0 35px rgba(212,160,23,.45); border-color: var(--gold); }
   #musicBtn.playing { animation: musicPulse 2s ease-in-out infinite; }
@@ -587,12 +632,11 @@
     50%      { box-shadow: 0 0 35px rgba(212,160,23,.55); }
   }
 </style>
- 
+
 <script>
-  /* ── YouTube IFrame API ── */
   const YT_ID = 's_GNpXbCkDo';
   let player, playing = true;
- 
+
   window.onYouTubeIframeAPIReady = function () {
     player = new YT.Player('yt-player', {
       videoId: YT_ID,
@@ -616,15 +660,13 @@
       }
     });
   };
- 
-  /* Cargar API */
+
   (function(){
     const tag = document.createElement('script');
     tag.src = 'https://www.youtube.com/iframe_api';
     document.head.appendChild(tag);
   })();
- 
-  /* Toggle play/pause */
+
   document.getElementById('musicBtn').addEventListener('click', function(){
     if (!player) return;
     if (playing) {
